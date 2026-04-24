@@ -1,0 +1,16 @@
+# DETECTive — Python dependencies
+#
+# Install with:
+#   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+#   pip install -r requirements.txt
+#
+# PyTorch has to be installed first with the matching CUDA wheel because the
+# default PyPI wheel is CPU-only. Once torch is present, the rest of this
+# file installs cleanly.
+
+torch_geometric>=2.5
+
+numpy
+pandas
+matplotlib
+tqdm

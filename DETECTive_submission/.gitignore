@@ -1,0 +1,54 @@
+# ── Python ────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ── Virtual environments ──────────────────────────────────────────
+venv/
+env/
+.venv/
+.env
+
+# ── Datasets + model weights (too large, regenerate locally) ──────
+*.pkl
+*.pt
+*.pth
+*.ckpt
+
+# ── Generated results (regenerate with `python pipeline.py`) ──────
+results/*.csv
+results/*.txt
+# Keep the training curves as a showcase plot:
+!results/training_curves.png
+# If you want to check in ALL result plots for a demo, flip to:
+# !results/*.png
+
+# ── Benchmark scratch files ───────────────────────────────────────
+benchmarks/
+benchmarks_bench/
+benchmarks_raw/
+*.bench
+*.blif
+*.test
+*.flt
+
+# ── Logs ──────────────────────────────────────────────────────────
+*.log
+training_run.log
+
+# ── Editors / OS ──────────────────────────────────────────────────
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# ── Jupyter ───────────────────────────────────────────────────────
+.ipynb_checkpoints/

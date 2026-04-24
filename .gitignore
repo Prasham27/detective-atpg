@@ -1,0 +1,42 @@
+# ── Python env ───────────────────────────────────────────────────
+venv/
+env/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# ── Datasets + weights ARE tracked (needed to run the model) ─────
+# train_dataset.pkl (~91 MB) and val_dataset.pkl (~23 MB) are kept so the
+# repo is self-contained. GitHub will warn on the 91 MB file but accept it.
+# Set up Git LFS later if the dataset grows past 100 MB.
+*.pkl.bak
+
+# ── Local logs + scratch ─────────────────────────────────────────
+*.log
+training_run.log
+*.output
+
+# ── Benchmark scratch dirs (populated by DETECTive_submission/benchmarks.py) ─
+benchmarks_bench/
+benchmarks_raw/
+benchmarks/
+*.bench
+*.blif
+*.test
+*.flt
+
+# ── Editor + OS noise ────────────────────────────────────────────
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+~*
+
+# ── Results reproducible from weights + netlists ─────────────────
+DETECTive_submission/results/*.csv
+DETECTive_submission/results/*.txt
+# Keep showcase PNGs so README renders nicely
+!DETECTive_submission/results/*.png
