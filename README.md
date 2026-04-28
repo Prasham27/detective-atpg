@@ -8,10 +8,11 @@ and **FAN** (Fujiwara–Shimono 1983) — on the full ISCAS-85 suite.
 
 The learned model is a Graph Attention Network + two LSTMs + an MLP that
 takes a faulted gate-level netlist and predicts a stuck-at test pattern in
-**one forward pass**, no backtracking. We trained it on ~12 000 synthetic
-4-input circuits (depth 4–30) for 100 epochs and then measured fault
-coverage, bit-accuracy, and ms/fault across all three classical baselines
-plus the learned model.
+**one forward pass**, no backtracking. We trained it on **15 000
+(circuit, fault) samples generated from 2 000 random 4-input circuits**
+(depth 4–30, 8 faults each — same setup as paper Section 5) for 100
+epochs and then measured fault coverage, bit-accuracy, and ms/fault
+across all three classical baselines plus the learned model.
 
 **Headline result on c432** (160 gates, contains a redundant fault that
 exhausts PODEM's search tree): **DETECTive is 17.6× faster than PODEM** with
@@ -29,6 +30,9 @@ exhausts PODEM's search tree): **DETECTive is 17.6× faster than PODEM** with
 | [`PODEM/`](PODEM/) | Clean PODEM notebook with theory cells (D-algebra, singular cover, PDCF, PDCs) + full ATPG engine + ISCAS-85 benchmark sweep. | Classical baseline #1. |
 | [`D Algorithm/`](D%20Algorithm/) | Roth's D-algorithm (line-by-line decision making, exponential worst case). ISCAS-85 sweep appended. | Classical baseline #2. |
 | [`FAN ALgorithm/`](FAN%20ALgorithm/) | FAN (multiple backtrace, headlines, unique sensitisation). ISCAS-85 sweep appended. | Classical baseline #3. |
+| [`presentation/`](presentation/) | Complete 30-min defense deck (`DETECTive_30min_full_deck.pptx`, 31 slides with speaker notes) + builder scripts. | Open to review or rebuild the slide deck. |
+| [`presentation_images/`](presentation_images/) | Plot PNGs embedded in the deck — bit-accuracy, runtime, fault-sim coverage, Fig 5a heatmap, Fig 6a depth curve. | Reference figures used in slides. |
+| [`PRESENTATION_CONTENT.md`](PRESENTATION_CONTENT.md) | Markdown mirror of every slide (title + bullets + speaker notes + image filename). | Quick-read deck reference without opening PowerPoint. |
 | [`parallelized.ipynb`](parallelized.ipynb) | Dataset generator — produces `train_dataset.pkl` / `val_dataset.pkl` from scratch. Random circuits, NAND+NOT technology mapping, brute-force ground truth. | Only if you want to regenerate the training data. |
 | `best_detective_model.pt` | Active best-val weights (261 KB). | Automatically loaded by the demo notebook. |
 | `checkpoint_last.pt` | Resume-from-epoch-100 checkpoint (760 KB). | Run `python DETECTive_submission/training.py --epochs 300` to continue. |
