@@ -147,6 +147,8 @@ methodology note.
 ├── analysis.py               # 90% verification + per-bucket breakdowns
 ├── benchmarks.py             # ISCAS-85 download + Yosys synth + eval
 ├── visualization.py          # paper figure reproduction
+├── fault_sim.py              # 2-valued gate-level fault simulator (coverage metric)
+├── demo.ipynb                # 4-way ATPG comparison (PODEM/D-Alg/FAN/ATPP) on ISCAS-85
 ├── docs/
 │   └── paper_comparison.md
 └── results/                  # generated CSVs + PNGs + reports

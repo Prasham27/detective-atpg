@@ -32,6 +32,8 @@ DETECTive paper (GLSVLSI '24) from this submission. Follow it top to bottom.
 | `analysis.py`                   | synthetic-data accuracy breakdowns + 90% verification report         |
 | `benchmarks.py`                 | ISCAS-85 download, synthesis, DETECTive vs ATALANTA evaluation       |
 | `visualization.py`              | reproduces paper figures 5b, 6a, 6b/c, 7 from the CSVs + history     |
+| `fault_sim.py`                  | clean 2-valued gate-level fault simulator (`parse_netlist`, `simulate_fault_detected`) — used by `demo.ipynb` for honest fault-coverage numbers |
+| `demo.ipynb`                    | 4-way ATPG comparison (PODEM / D-Alg / FAN / ATPP) on c17, c432, c499, c880, c1908 — bit-accuracy, fault-sim coverage, runtime, paper Fig 5a/6a replications |
 | `requirements.txt`              | pip dependencies                                                     |
 | `results/`                      | all generated output (CSVs, PNGs, text reports)                      |
 | `docs/paper_comparison.md`      | our numbers vs the paper's claims, side by side                      |
@@ -319,3 +321,23 @@ python pipeline.py --skip-benchmarks      # no external tools
 - `results/results_accuracy_summary.csv`  — headline metrics in CSV form
 - `results/*.png`                         — paper-figure reproductions
 - `docs/paper_comparison.md`              — our numbers vs the paper's, side by side
+
+---
+
+## 9. 4-way ATPG comparison demo (`demo.ipynb`)
+
+`demo.ipynb` runs PODEM, D-Algorithm, FAN, and ATPP head-to-head on five
+ISCAS-85 circuits (c17, c432, c499, c880, c1908) and renders every figure
+needed for the writeup. Two metrics are reported side by side:
+
+- **Bit-accuracy** — the paper-faithful metric (Section 5 of the paper).
+  Per-bit match against the closest classical-ATPG ground-truth pattern.
+  This is what the bar charts and Fig 5a-style heatmap report.
+- **Fault-sim coverage** — a stricter optional metric computed via
+  `fault_sim.py` (clean 2-valued simulator with `parse_netlist()` and
+  `simulate_fault_detected()`). Reports the fraction of injected stuck-at
+  faults each predicted pattern actually detects at a primary output.
+  Included as an honesty addendum next to the bit-accuracy bars.
+
+Sections 7 and 8 of the notebook reproduce paper Fig 5a (size × depth
+heatmap) and Fig 6a (accuracy vs fault depth curve) from this run.

@@ -35,6 +35,9 @@ Thumbs.db
 *.swp
 ~*
 
+# ── Copyrighted reference papers (do not redistribute) ───────────
+*.pdf
+
 # ── Results reproducible from weights + netlists ─────────────────
 DETECTive_submission/results/*.csv
 DETECTive_submission/results/*.txt
