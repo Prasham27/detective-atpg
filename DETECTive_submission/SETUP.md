@@ -32,8 +32,8 @@ DETECTive paper (GLSVLSI '24) from this submission. Follow it top to bottom.
 | `analysis.py`                   | synthetic-data accuracy breakdowns + 90% verification report         |
 | `benchmarks.py`                 | ISCAS-85 download, synthesis, DETECTive vs ATALANTA evaluation       |
 | `visualization.py`              | reproduces paper figures 5b, 6a, 6b/c, 7 from the CSVs + history     |
-| `fault_sim.py`                  | clean 2-valued gate-level fault simulator (`parse_netlist`, `simulate_fault_detected`) — used by `demo.ipynb` for honest fault-coverage numbers |
-| `demo.ipynb`                    | 4-way ATPG comparison (PODEM / D-Alg / FAN / ATPP) on c17, c432, c499, c880, c1908 — bit-accuracy, fault-sim coverage, runtime, paper Fig 5a/6a replications |
+| `fault_sim.py`                  | clean 2-valued gate-level fault simulator (`parse_netlist`, `simulate_fault_detected`) — used by `four_way_comparison.ipynb` for honest fault-coverage numbers |
+| `four_way_comparison.ipynb`     | 4-way ATPG comparison (PODEM / D-Alg / FAN / ATPP) on c17, c432, c499, c880, c1908 — bit-accuracy, fault-sim coverage, runtime, paper Fig 5a/6a replications |
 | `requirements.txt`              | pip dependencies                                                     |
 | `results/`                      | all generated output (CSVs, PNGs, text reports)                      |
 | `docs/paper_comparison.md`      | our numbers vs the paper's claims, side by side                      |
@@ -324,9 +324,9 @@ python pipeline.py --skip-benchmarks      # no external tools
 
 ---
 
-## 9. 4-way ATPG comparison demo (`demo.ipynb`)
+## 9. 4-way ATPG comparison notebook (`four_way_comparison.ipynb`)
 
-`demo.ipynb` runs PODEM, D-Algorithm, FAN, and ATPP head-to-head on five
+`four_way_comparison.ipynb` runs PODEM, D-Algorithm, FAN, and ATPP head-to-head on five
 ISCAS-85 circuits (c17, c432, c499, c880, c1908) and renders every figure
 needed for the writeup. Two metrics are reported side by side:
 

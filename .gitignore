@@ -35,8 +35,8 @@ Thumbs.db
 *.swp
 ~*
 
-# ── Copyrighted reference papers (do not redistribute) ───────────
-*.pdf
+# ── Runtime outputs from four_way_comparison.ipynb (re-created on every run) ──
+presentation_images/
 
 # ── Results reproducible from weights + netlists ─────────────────
 DETECTive_submission/results/*.csv

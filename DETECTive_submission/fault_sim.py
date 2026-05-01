@@ -75,7 +75,7 @@ def _eval_gate(gtype: str, inputs: List[int]) -> int:
 
 
 # ============================================================================
-#  Verilog parser  (matches CircuitGraphBuilder / PODEM_final's subset)
+#  Verilog parser  (matches CircuitGraphBuilder / PODEM notebook's subset)
 # ============================================================================
 
 _GATE_RE = re.compile(

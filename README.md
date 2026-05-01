@@ -24,17 +24,17 @@ exhausts PODEM's search tree): **DETECTive is 17.6× faster than PODEM** with
 
 | Path | What's in it | When to open |
 |---|---|---|
-| [`DETECTive_submission/`](DETECTive_submission/) | **Main learned-ATPG submission.** Modular PyTorch code, training script, full evaluation pipeline, 4-way comparison demo notebook, full setup guide. | Always — start here. See its [README](DETECTive_submission/README.md) and [SETUP.md](DETECTive_submission/SETUP.md). |
+| [`DETECTive_submission/`](DETECTive_submission/) | **Main learned-ATPG submission.** Modular PyTorch code, training script, full evaluation pipeline, 4-way comparison notebook, full setup guide. | Always — start here. See its [README](DETECTive_submission/README.md) and [SETUP.md](DETECTive_submission/SETUP.md). |
 | [`100_epoch_run/`](100_epoch_run/) | Trained weights + training summary + ISCAS-85 benchmark CSV from the 100-epoch run (best val 0.8358 @ ep 40). | When you want inference without re-training. |
 | [`netlists/`](netlists/) | 11 ISCAS-85 gate-level Verilog files: c17, c432, c499, c880, c1908, c1355, c2670, c3540, c5315, c6288, c7552. | Shared by all 4 notebooks. |
 | [`PODEM/`](PODEM/) | Clean PODEM notebook with theory cells (D-algebra, singular cover, PDCF, PDCs) + full ATPG engine + ISCAS-85 benchmark sweep. | Classical baseline #1. |
-| [`D Algorithm/`](D%20Algorithm/) | Roth's D-algorithm (line-by-line decision making, exponential worst case). ISCAS-85 sweep appended. | Classical baseline #2. |
-| [`FAN ALgorithm/`](FAN%20ALgorithm/) | FAN (multiple backtrace, headlines, unique sensitisation). ISCAS-85 sweep appended. | Classical baseline #3. |
-| [`presentation/`](presentation/) | Complete 30-min defense deck (`DETECTive_30min_full_deck.pptx`, 31 slides with speaker notes) + builder scripts. | Open to review or rebuild the slide deck. |
-| [`presentation_images/`](presentation_images/) | Plot PNGs embedded in the deck — bit-accuracy, runtime, fault-sim coverage, Fig 5a heatmap, Fig 6a depth curve. | Reference figures used in slides. |
-| [`PRESENTATION_CONTENT.md`](PRESENTATION_CONTENT.md) | Markdown mirror of every slide (title + bullets + speaker notes + image filename). | Quick-read deck reference without opening PowerPoint. |
-| [`parallelized.ipynb`](parallelized.ipynb) | Dataset generator — produces `train_dataset.pkl` / `val_dataset.pkl` from scratch. Random circuits, NAND+NOT technology mapping, brute-force ground truth. | Only if you want to regenerate the training data. |
-| `best_detective_model.pt` | Active best-val weights (261 KB). | Automatically loaded by the demo notebook. |
+| [`D_Algorithm/`](D_Algorithm/) | Roth's D-algorithm (line-by-line decision making, exponential worst case). ISCAS-85 sweep appended. | Classical baseline #2. |
+| [`FAN_Algorithm/`](FAN_Algorithm/) | FAN (multiple backtrace, headlines, unique sensitisation). ISCAS-85 sweep appended. | Classical baseline #3. |
+| [`ppt/`](ppt/) | Project presentation — `Presentation.pdf` and `Presentation.pptx`. | Open to review the slide deck. |
+| [`report/`](report/) | Final BTech Mini Project Report — `report.pdf` (the deliverable) and `report.tex` (LaTeX source). | Read `report.pdf` for the full architecture walkthrough, results, and four-way comparison. |
+| [`DETECTive_paper.pdf`](DETECTive_paper.pdf) | The original GLSVLSI '24 paper this work reproduces. | Reference. |
+| [`full_pipeline.ipynb`](full_pipeline.ipynb) | Complete end-to-end walkthrough notebook (7 phases): circuit graph builder, GNN representation, LSTM path encoders, cone embedding, master model, dataset generation, and training loop. Produces `train_dataset.pkl` / `val_dataset.pkl`. | Read this if you want the full pipeline narrated cell by cell, or to regenerate the training data. |
+| `best_detective_model.pt` | Active best-val weights (261 KB). | Automatically loaded by the four-way comparison notebook. |
 | `checkpoint_last.pt` | Resume-from-epoch-100 checkpoint (760 KB). | Run `python DETECTive_submission/training.py --epochs 300` to continue. |
 
 ### Datasets included in the repo
@@ -46,7 +46,7 @@ exhausts PODEM's search tree): **DETECTive is 17.6× faster than PODEM** with
 
 Both pickles are committed so the repo is self-contained — no extra
 download step. If you want to regenerate them from scratch, open
-`parallelized.ipynb` and run the Phase 6 cells.
+`full_pipeline.ipynb` and run the Phase 6 cells.
 
 ### Not in the repo (regenerate locally)
 
@@ -60,7 +60,7 @@ download step. If you want to regenerate them from scratch, open
 
 ```bash
 # 1. Clone
-git clone https://github.com/<your-username>/detective-atpg.git
+git clone https://github.com/Prasham27/detective-atpg.git
 cd detective-atpg
 
 # 2. Python environment
@@ -74,11 +74,11 @@ pip install torch --index-url https://download.pytorch.org/whl/cu121
 # 4. Install the rest
 pip install -r DETECTive_submission/requirements.txt
 
-# 5. Verify the demo notebook (plots + 4-way ATPG comparison)
-jupyter notebook DETECTive_submission/demo.ipynb
+# 5. Open the four-way ATPG comparison notebook (plots + ISCAS-85 sweep)
+jupyter notebook DETECTive_submission/four_way_comparison.ipynb
 ```
 
-`demo.ipynb` is the one-stop deliverable — it loads the 100-epoch weights,
+`four_way_comparison.ipynb` is the one-stop deliverable — it loads the 100-epoch weights,
 runs DETECTive on any ISCAS-85 netlist you point at, and renders a 4-way
 comparison (PODEM | D-algorithm | FAN | DETECTive) with all plots embedded.
 
@@ -90,9 +90,9 @@ open any of them on GitHub and scroll through.
 ### Run the classical ATPG notebooks
 
 ```bash
-jupyter notebook PODEM/PODEM_final.ipynb               # PODEM
-jupyter notebook "D Algorithm/D_Algorithm.ipynb"        # D-algorithm
-jupyter notebook "FAN ALgorithm/FAN_Algorithm.ipynb"    # FAN
+jupyter notebook PODEM/PODEM.ipynb                      # PODEM
+jupyter notebook D_Algorithm/D_Algorithm.ipynb          # D-algorithm
+jupyter notebook FAN_Algorithm/FAN_Algorithm.ipynb      # FAN
 ```
 
 Each has an **ISCAS-85 Benchmark Sweep** section near the bottom that
@@ -102,7 +102,7 @@ iterates over the shared `netlists/` folder.
 
 ```bash
 # Regenerate datasets first (if pickles aren't present)
-jupyter notebook parallelized.ipynb                     # Run All
+jupyter notebook full_pipeline.ipynb                     # Run All
 
 # Fresh training from epoch 0
 python DETECTive_submission/training.py --fresh --epochs 100
@@ -138,4 +138,4 @@ DOI: 10.1145/3649476.3658696
 
 ## License
 
-MIT. See [`DETECTive_submission/LICENSE`](DETECTive_submission/LICENSE).
+MIT. See [`LICENSE`](LICENSE).
