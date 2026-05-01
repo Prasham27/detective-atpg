@@ -74,8 +74,8 @@ Boolean value.
 ## Quick start
 
 ```bash
-git clone https://github.com/<you>/detective.git
-cd detective
+git clone https://github.com/Prasham27/detective-atpg.git
+cd detective-atpg/DETECTive_submission
 
 # Install PyTorch with CUDA (adjust cu121 to match your driver), then the rest
 pip install torch --index-url https://download.pytorch.org/whl/cu121
@@ -134,7 +134,6 @@ methodology note.
 .
 ├── README.md
 ├── SETUP.md                  # the ultimate step-by-step usage guide
-├── LICENSE                   # MIT
 ├── requirements.txt
 ├── run_all.py                # one-command end-to-end runner
 ├── pipeline.py               # orchestrator (training optional)
@@ -148,7 +147,7 @@ methodology note.
 ├── benchmarks.py             # ISCAS-85 download + Yosys synth + eval
 ├── visualization.py          # paper figure reproduction
 ├── fault_sim.py              # 2-valued gate-level fault simulator (coverage metric)
-├── demo.ipynb                # 4-way ATPG comparison (PODEM/D-Alg/FAN/ATPP) on ISCAS-85
+├── four_way_comparison.ipynb # 4-way ATPG comparison (PODEM/D-Alg/FAN/ATPP) on ISCAS-85
 ├── docs/
 │   └── paper_comparison.md
 └── results/                  # generated CSVs + PNGs + reports
@@ -178,5 +177,5 @@ A few practical deltas from the paper's pseudocode, each with a concrete why:
 
 ## License
 
-MIT. See [LICENSE](./LICENSE). If you use this implementation in academic
-work, please cite the original paper.
+MIT. See [`../LICENSE`](../LICENSE) at the project root. If you use this
+implementation in academic work, please cite the original paper.

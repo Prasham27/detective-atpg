@@ -7,8 +7,9 @@ right now — rerun `python pipeline.py --skip-benchmarks` (or the full
 `python pipeline.py`) after any new training run to refresh them.
 
 Snapshot values below are from the current `best_detective_model.pt` (best
-validation accuracy = 0.8377 at epoch 58 in the original dev run). Re-run
-`analysis.py` after training finishes to update them.
+validation accuracy = 0.8358 at epoch 40 in the 100-epoch run; see
+`100_epoch_run/TRAINING_SUMMARY.md` at the project root). Re-run
+`analysis.py` after training finishes to refresh them.
 
 ---
 
