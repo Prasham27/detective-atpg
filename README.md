@@ -18,6 +18,12 @@ across all three classical baselines plus the learned model.
 exhausts PODEM's search tree): **DETECTive is 17.6× faster than PODEM** with
 85.5 % bit-accuracy vs PODEM's full ground truth.
 
+> **Start here:** open
+> [`DETECTive_submission/four_way_comparison.ipynb`](DETECTive_submission/four_way_comparison.ipynb)
+> for the head-to-head plots on real ISCAS-85 circuits, or
+> [`report/report.pdf`](report/report.pdf) for the full architecture walkthrough
+> and four-way analysis.
+
 ---
 
 ## Directory guide — what each folder is for
